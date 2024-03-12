@@ -1,0 +1,704 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package apartment_management_system;
+
+import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Christus
+ */
+public class Lease_Frame extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Lease_Frame
+     */
+    public Lease_Frame() {
+        initComponents();
+        
+        Border bottom_border = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK);
+        frame_title3.setBorder(bottom_border);
+        
+        cbo_lease_status.setSelectedItem(null);
+        fillJTableWithTenantData();
+        fillJTableWithApartmentData();
+        fillJTableWithLeaseData();
+    }
+    
+    // Define a method to clear text fields
+    private void clearTextFields() {
+        txt_leaseId.setText("");
+        txt_tenantId.setText("");
+        txt_apt_number.setText("");
+        jDateChooser_start_date.setDate(null);
+        jDateChooser_end_date.setDate(null);
+        txt_monthly_rent.setText("");
+        txt_security_deposit.setText("");
+        cbo_lease_status.setSelectedItem(null);
+        
+    }
+    
+    //Method to populate the Lease table
+    public void fillJTableWithLeaseData(){
+        Lease_Class lease = new Lease_Class();
+        ArrayList<Lease_Class> leaseList = lease.leaseList();
+        
+        //JTable Columns
+        String[] colNames = {"ID", "TenantID", "Apt. No.", "Start", "End", "Rent", "Sec. Dep.", "Status"};
+        
+        //JTable Rows
+        //leaseList.size() = size of the arraylist
+        //8 = the number of columns
+        Object[][] rows = new Object[leaseList.size()][8];
+        
+        //add data from the list to the rows
+        for(int i = 0; i < leaseList.size(); i++){
+            rows[i][0] = leaseList.get(i).getLease_id();
+            rows[i][1] = leaseList.get(i).getTenant_id();
+            rows[i][2] = leaseList.get(i).getApt_num();
+            rows[i][3] = leaseList.get(i).getStart_date();
+            rows[i][4] = leaseList.get(i).getEnd_date();
+            rows[i][5] = leaseList.get(i).getMonthly_rent();
+            rows[i][6] = leaseList.get(i).getSec_deposit();
+            rows[i][7] = leaseList.get(i).getStatus();
+            
+            DefaultTableModel model = new DefaultTableModel(rows, colNames);
+            lease_table.setModel(model);
+             
+        }
+        
+    }
+    
+    //Method to populate the Apartment table
+    public void fillJTableWithApartmentData(){
+        Apartment_Class apartment = new Apartment_Class();
+        ArrayList<Apartment_Class> apartmentList = apartment.apartmentList();
+        
+        //JTable Columns
+        String[] colNames = {"Apt. No.", "Apt. Type", "Rental Fee", "Building Name"};
+        
+        //JTable Rows
+        //apartmentList.size() = size of the arraylist
+        //4 = the number of columns
+        Object[][] rows = new Object[apartmentList.size()][4];
+        
+        //add data from the list to the rows
+        for(int i = 0; i < apartmentList.size(); i++){
+            rows[i][0] = apartmentList.get(i).getAptNum();
+            rows[i][1] = apartmentList.get(i).getAptType();
+            rows[i][2] = apartmentList.get(i).getRentalFee();
+            rows[i][3] = apartmentList.get(i).getBName();
+            
+            DefaultTableModel model = new DefaultTableModel(rows, colNames);
+            apartment_table.setModel(model);
+             
+        }
+        
+    }
+    
+    
+    //Method to populate the Tenant table
+    public void fillJTableWithTenantData(){
+        Tenant_Class tenant = new Tenant_Class();
+        ArrayList<Tenant_Class> tenantList = tenant.tenantList();
+        
+        //JTable Columns
+        String[] colNames = {"ID", "FirstName", "LastName"};
+        
+        //JTable Rows
+        //tenantList.size() = size of the arraylist
+        //3 = the number of columns
+        Object[][] rows = new Object[tenantList.size()][3];
+        
+        //add data from the list to the rows
+        for(int i = 0; i < tenantList.size(); i++){
+            rows[i][0] = tenantList.get(i).getId();
+            rows[i][1] = tenantList.get(i).getFirstName();
+            rows[i][2] = tenantList.get(i).getLastName();
+            
+            DefaultTableModel model = new DefaultTableModel(rows, colNames);
+            tenant_table.setModel(model);
+            
+        }
+        
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        frame_title3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txt_leaseId = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txt_tenantId = new javax.swing.JTextField();
+        txt_apt_number = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txt_monthly_rent = new javax.swing.JTextField();
+        txt_security_deposit = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        add_lease = new javax.swing.JButton();
+        update_lease = new javax.swing.JButton();
+        refresh_lease_table = new javax.swing.JButton();
+        cbo_lease_status = new javax.swing.JComboBox<>();
+        jDateChooser_start_date = new com.toedter.calendar.JDateChooser();
+        jDateChooser_end_date = new com.toedter.calendar.JDateChooser();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        apartment_table = new javax.swing.JTable();
+        refresh_apt_table = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tenant_table = new javax.swing.JTable();
+        refresh_tenant_table = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lease_table = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        frame_title3.setFont(new java.awt.Font("Cambria", 1, 20)); // NOI18N
+        frame_title3.setText("    Lease  Frame");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(frame_title3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(549, 549, 549))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(frame_title3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jLabel9.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel9.setText("ID: ");
+
+        txt_leaseId.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        txt_leaseId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_leaseIdActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel10.setText("Tenant ID: ");
+
+        txt_tenantId.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        txt_tenantId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_tenantIdActionPerformed(evt);
+            }
+        });
+
+        txt_apt_number.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        txt_apt_number.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_apt_numberActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel11.setText("Apt Number: ");
+
+        jLabel12.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel12.setText("Start Date: ");
+
+        jLabel13.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel13.setText("End Date: ");
+
+        jLabel14.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel14.setText("Monthly Rent: ");
+
+        txt_monthly_rent.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        txt_monthly_rent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_monthly_rentActionPerformed(evt);
+            }
+        });
+
+        txt_security_deposit.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        txt_security_deposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_security_depositActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel15.setText("Security Deposit:");
+
+        jLabel16.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel16.setText("Lease Status: ");
+
+        add_lease.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        add_lease.setText("Add Lease");
+        add_lease.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_lease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_leaseActionPerformed(evt);
+            }
+        });
+
+        update_lease.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        update_lease.setText("Update Lease");
+        update_lease.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        update_lease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_leaseActionPerformed(evt);
+            }
+        });
+
+        refresh_lease_table.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        refresh_lease_table.setText("Refresh Table");
+        refresh_lease_table.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh_lease_table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_lease_tableActionPerformed(evt);
+            }
+        });
+
+        cbo_lease_status.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        cbo_lease_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Terminated" }));
+
+        jDateChooser_start_date.setDateFormatString("dd-MM-yyyy");
+        jDateChooser_start_date.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+
+        jDateChooser_end_date.setDateFormatString("dd-MM-yyyy");
+        jDateChooser_end_date.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+
+        apartment_table.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        apartment_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        apartment_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                apartment_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(apartment_table);
+
+        refresh_apt_table.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        refresh_apt_table.setText("Refresh Table");
+        refresh_apt_table.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh_apt_table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_apt_tableActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel1.setText("Lease List");
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel2.setText("Apartment List");
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel3.setText("Tenant List");
+
+        tenant_table.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        tenant_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tenant_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tenant_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tenant_table);
+
+        refresh_tenant_table.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        refresh_tenant_table.setText("Refresh Table");
+        refresh_tenant_table.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh_tenant_table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_tenant_tableActionPerformed(evt);
+            }
+        });
+
+        lease_table.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        lease_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        lease_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lease_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(lease_table);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(add_lease, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(update_lease, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbo_lease_status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_security_deposit)
+                            .addComponent(txt_monthly_rent)
+                            .addComponent(jDateChooser_end_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser_start_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_apt_number)
+                            .addComponent(txt_tenantId)
+                            .addComponent(txt_leaseId, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(refresh_lease_table, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(refresh_tenant_table, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(refresh_apt_table, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_leaseId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_tenantId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_apt_number, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDateChooser_start_date, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDateChooser_end_date, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_monthly_rent, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_security_deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(cbo_lease_status, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1, 1, 1)))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(add_lease, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(update_lease, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(1, 1, 1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(refresh_tenant_table, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(refresh_apt_table, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(refresh_lease_table, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 41, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_leaseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_leaseIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_leaseIdActionPerformed
+
+    private void txt_tenantIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tenantIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_tenantIdActionPerformed
+
+    private void txt_apt_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_apt_numberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_apt_numberActionPerformed
+
+    private void txt_monthly_rentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_monthly_rentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_monthly_rentActionPerformed
+
+    private void txt_security_depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_security_depositActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_security_depositActionPerformed
+
+    private void add_leaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_leaseActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //int leaseId = Integer.valueOf(txt_leaseId.getText());
+        int tenantId = Integer.valueOf(txt_tenantId.getText());
+        int aptNum = Integer.valueOf(txt_apt_number.getText());
+        String start = dateFormat.format(jDateChooser_start_date.getDate());
+        String end = dateFormat.format(jDateChooser_end_date.getDate());
+        String rent = txt_monthly_rent.getText();
+        String deposit = txt_security_deposit.getText();
+        String status = cbo_lease_status.getSelectedItem().toString();
+        
+        Lease_Class lease = new Lease_Class(0, tenantId, aptNum, start, end, rent, deposit, status);
+        
+        if(new Lease_Class().addLease(lease)){
+            JOptionPane.showMessageDialog(null, "Lease Added Successfully", "Add Lease", 1);
+            clearTextFields();
+        }else{
+            JOptionPane.showMessageDialog(null, "Operation Failed", "Add Lease", 1);
+        }
+        
+    }//GEN-LAST:event_add_leaseActionPerformed
+
+    private void update_leaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_leaseActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        int leaseId = Integer.valueOf(txt_leaseId.getText());
+        int tenantId = Integer.valueOf(txt_tenantId.getText());
+        int aptNum = Integer.valueOf(txt_apt_number.getText());
+        String start = dateFormat.format(jDateChooser_start_date.getDate());
+        String end = dateFormat.format(jDateChooser_end_date.getDate());
+        String rent = txt_monthly_rent.getText();
+        String deposit = txt_security_deposit.getText();
+        String status = cbo_lease_status.getSelectedItem().toString();
+        
+        Lease_Class lease = new Lease_Class(leaseId, tenantId, aptNum, start, end, rent, deposit, status);
+        
+        if(new Lease_Class().editLease(lease)){
+            JOptionPane.showMessageDialog(null, "Lease Updated Successfully", "Update Lease", 1);
+            clearTextFields();
+        }else{
+            JOptionPane.showMessageDialog(null, "Operation Failed", "Update Lease", 1);
+        }
+        
+        
+    }//GEN-LAST:event_update_leaseActionPerformed
+
+    private void refresh_lease_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_lease_tableActionPerformed
+        // TODO add your handling code here:
+        fillJTableWithLeaseData();
+    }//GEN-LAST:event_refresh_lease_tableActionPerformed
+
+    private void lease_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lease_tableMouseClicked
+        // TODO add your handling code here:
+        //Fill The Form Field With The Selected Lease Data
+        int selectedRowIndex = lease_table.getSelectedRow();
+        txt_leaseId.setText(lease_table.getValueAt(selectedRowIndex, 0).toString());
+        txt_tenantId.setText(lease_table.getValueAt(selectedRowIndex, 1).toString());
+        txt_apt_number.setText(lease_table.getValueAt(selectedRowIndex, 2).toString());
+        // Correctly set the start date and end date
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = dateFormat.parse(lease_table.getValueAt(selectedRowIndex, 3).toString());
+            Date endDate = dateFormat.parse(lease_table.getValueAt(selectedRowIndex, 4).toString());
+            jDateChooser_start_date.setDate(startDate);
+            jDateChooser_end_date.setDate(endDate);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_monthly_rent.setText(lease_table.getValueAt(selectedRowIndex, 5).toString());
+        txt_security_deposit.setText(lease_table.getValueAt(selectedRowIndex, 6).toString());
+        cbo_lease_status.setSelectedItem(lease_table.getValueAt(selectedRowIndex, 7).toString());
+
+    }//GEN-LAST:event_lease_tableMouseClicked
+
+    private void apartment_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apartment_tableMouseClicked
+        // TODO add your handling code here:
+        //Fill The Apt Number Field and Monthly Rent Field With The Selected Apartment Data
+        int selectedRowIndex = apartment_table.getSelectedRow();
+        txt_apt_number.setText(apartment_table.getValueAt(selectedRowIndex, 0).toString());
+        txt_monthly_rent.setText(apartment_table.getValueAt(selectedRowIndex, 2).toString());
+    }//GEN-LAST:event_apartment_tableMouseClicked
+
+    private void refresh_apt_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_apt_tableActionPerformed
+        // TODO add your handling code here:
+        fillJTableWithApartmentData();
+    }//GEN-LAST:event_refresh_apt_tableActionPerformed
+
+    private void tenant_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tenant_tableMouseClicked
+        // TODO add your handling code here:
+        //Fill The TenantId Field With The Selected Tenants Data
+        int selectedRowIndex = tenant_table.getSelectedRow();
+        txt_tenantId.setText(tenant_table.getValueAt(selectedRowIndex, 0).toString());
+    }//GEN-LAST:event_tenant_tableMouseClicked
+
+    private void refresh_tenant_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_tenant_tableActionPerformed
+        // TODO add your handling code here:
+        fillJTableWithTenantData();
+    }//GEN-LAST:event_refresh_tenant_tableActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Lease_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Lease_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Lease_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Lease_Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Lease_Frame().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_lease;
+    private javax.swing.JTable apartment_table;
+    private javax.swing.JComboBox<String> cbo_lease_status;
+    private javax.swing.JLabel frame_title3;
+    private com.toedter.calendar.JDateChooser jDateChooser_end_date;
+    private com.toedter.calendar.JDateChooser jDateChooser_start_date;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable lease_table;
+    private javax.swing.JButton refresh_apt_table;
+    private javax.swing.JButton refresh_lease_table;
+    private javax.swing.JButton refresh_tenant_table;
+    private javax.swing.JTable tenant_table;
+    private javax.swing.JTextField txt_apt_number;
+    private javax.swing.JTextField txt_leaseId;
+    private javax.swing.JTextField txt_monthly_rent;
+    private javax.swing.JTextField txt_security_deposit;
+    private javax.swing.JTextField txt_tenantId;
+    private javax.swing.JButton update_lease;
+    // End of variables declaration//GEN-END:variables
+}

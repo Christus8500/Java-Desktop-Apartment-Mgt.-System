@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\USER\Desktop\ApartmentManagementSystem\dist\apartment_management_system.jar</jar>
+  <outfile>C:\Users\USER\Desktop\AptManageApp\THouses.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <classPath>
+    <mainClass>apartment_management_system.Login_Frame</mainClass>
+    <cp>lib/mysql-connector-j-8.1.0.jar</cp>
+    <cp>lib/jcalendar-1.4.jar</cp>
+    <cp>lib/jcalendar-1.4.jar</cp>
+    <cp>lib/mysql-connector-j-8.1.0.jar</cp>
+    <cp>C:\Users\USER\Desktop\ApartmentManagementSystem\dist\apartment_management_system.jar</cp>
+    <cp>C:\Users\USER\Desktop\ApartmentManagementSystem\dist\lib\*</cp>
+  </classPath>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>1.4.0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>

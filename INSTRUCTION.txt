@@ -1,0 +1,11 @@
+There is an sql dump file (amsproject_db.sql) attatched to this project, to access the database;
+
+1. Download xampp control panel from here https://www.apachefriends.org/download.html and install it
+2. Start Apache and MySQL
+3. Click on the "Admin" button of the MySQL, to take you to phpMyAdmin. If there are port errors, browse for ways to solve it, it should be simple.
+4. Create new database "amsproject_db"
+5. Click on the database "amsproject_db" and click on the "import" tab
+6. Click on choose file and select the dump file "amsproject_db.sql"
+7. Scroll down to the "import" button and click on it.
+
+You can add and get information from this database now.
